@@ -4,120 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Ningún cuerpo es tierra firme?</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* Variables del portfolio */
+        :root {
+            --primary-bg: #022741;
+            --secondary-bg: #0a1929;
+            --accent-color: #b14abf;
+            --accent-secondary: #41bf9a;
+            --accent-tertiary: #f2e63c;
+            --text-primary: #abb2bf;
+            --text-secondary: #8892a6;
+            --text-muted: #5c6370;
+            --border-color: #1e2a3a;
+            --font-mono: "JetBrains Mono", monospace;
+            --font-sans: "Inter", sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         body {
             margin: 0;
-            padding: 0;
-            background: #022741;
-            color: #abb2bf;
-            font-family: 'Arial', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            height: 100vh;
+            overflow: hidden; /* Sin scroll de página */
         }
         
         .container {
-            max-width: 800px;
-            padding: 20px;
-            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
         }
         
         h1 {
-            color: #b14abf;
-            margin-bottom: 15px;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            line-height: 1.2;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            letter-spacing: 1px;
         }
         
         .info {
-            margin-bottom: 25px;
-            color: #8892a6;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
         }
         
         .info p {
-            margin: 8px 0;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin: 3px 0;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+            font-weight: 500;
+        }
+        
+        .info strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        /* Layout de dos columnas 50/50 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            min-height: 0; /* Importante para el grid */
         }
         
         .artwork-section {
-            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         
         #div-sketch {
-            border: 2px solid #1e2a3a;
-            border-radius: 8px;
-            padding: 10px;
-            background: #0a1929;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin: 0 auto 15px;
-            display: inline-block;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            background: var(--secondary-bg);
+            box-shadow: 0 20px 40px rgba(0, 39, 65, 0.3);
+            margin-bottom: 15px;
         }
         
         .instructions {
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            color: #5c6370;
+            text-align: center;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            color: var(--text-muted);
             font-style: italic;
-            margin-bottom: 25px;
+            max-width: 350px;
+            font-family: var(--font-mono);
+            line-height: 1.4;
         }
         
-        .description-toggle {
+        /* Columna de texto */
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        
+        .text-container {
+            background: rgba(10, 25, 41, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            min-height: 0;
+        }
+        
+        .text-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+            font-family: var(--font-sans);
+        }
+        
+        .text-content h3 {
+            color: var(--accent-secondary);
+            margin: 0 0 15px 0;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-family: var(--font-mono);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .text-content p {
+            margin-bottom: 14px;
+            font-weight: 400;
+            text-align: justify;
+        }
+        
+        .text-content p:first-of-type {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .text-content em {
+            color: var(--accent-tertiary);
+            font-style: italic;
+        }
+        
+        .text-content blockquote {
+            margin: 15px 0;
+            padding: 10px 15px;
+            border-left: 3px solid var(--accent-color);
+            background: rgba(177, 74, 191, 0.1);
+            font-style: italic;
+            color: var(--text-primary);
+        }
+        
+        /* Sección de bibliografía */
+        .bibliography {
             margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
         }
         
-        .toggle-btn {
-            background: #b14abf;
-            color: white;
+        .bibliography h4 {
+            color: var(--accent-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .bibliography p {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        
+        /* Contenido expandido - inicialmente oculto */
+        .expanded-content {
+            display: none;
+        }
+        
+        .expanded-content.visible {
+            display: block;
+        }
+        
+        /* Botón expandir */
+        .expand-section {
+            margin-top: 15px;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .expand-btn {
+            background: var(--accent-color);
+            color: var(--primary-bg);
             border: none;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
+            font-size: 11px;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            text-transform: uppercase;
         }
         
-        .toggle-btn:hover {
-            background: #41bf9a;
-            transform: translateY(-2px);
+        .expand-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(177, 74, 191, 0.3);
         }
         
-        .description {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            margin-top: 20px;
+        /* Scrollbar personalizada */
+        .text-content::-webkit-scrollbar {
+            width: 6px;
         }
         
-        .description.expanded {
-            max-height: 500px;
+        .text-content::-webkit-scrollbar-track {
+            background: var(--secondary-bg);
+            border-radius: 3px;
         }
         
-        .description-content {
-            background: rgba(177, 74, 191, 0.1);
-            border: 1px solid #1e2a3a;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: left;
-            color: #8892a6;
-            line-height: 1.6;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+        .text-content::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 3px;
         }
         
-        .description h3 {
-            color: #41bf9a;
-            margin-bottom: 15px;
-            text-align: center;
+        .text-content::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
         }
         
         /* Responsive */
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                overflow-y: auto; /* Permitir scroll en móvil */
             }
             
-            #div-sketch {
-                padding: 8px;
+            .container {
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .text-content {
+                max-height: 400px;
             }
         }
     </style>
@@ -125,36 +273,60 @@
 <body>
     <div class="container">
         <h1>¿Ningún cuerpo es tierra firme?</h1>
-        
         <div class="info">
             <p><strong>Florencia Pennella</strong> • 2024</p>
             <p>Arte interactivo • p5.js • Fotografía analógica</p>
         </div>
         
-        <div class="artwork-section">
-            <div id="div-sketch"></div>
-            
-            <div class="instructions">
-                Haz clic y arrastra para dibujar polígonos sobre la imagen
+        <div class="main-content">
+            <!-- Columna izquierda: Obra -->
+            <div class="artwork-section">
+                <div id="div-sketch"></div>
+                <div class="instructions">
+                    Haz clic y arrastra para dibujar polígonos sobre la imagen
+                </div>
             </div>
-        </div>
-        
-        <div class="description-toggle">
-            <button class="toggle-btn" onclick="toggleDescription()">
-                Ver descripción de la obra
-            </button>
-        </div>
-        
-        <div class="description" id="description">
-            <div class="description-content">
-                <h3>Sobre la obra</h3>
-                <p>"¿Ningún cuerpo es tierra firme?" presenta tres fotografías en blanco y negro, en las que una pareja es retratada en diversos paisajes.</p>
-                
-                <p>Al hacer clic, existe la posibilidad de dibujar polígonos yuxtapuestos, que varían en color tomando como referencia las tonalidades del sector de la fotografía de fondo sobre la que se posa el mouse. Estos polígonos también cambian su tamaño según la posición en el eje vertical del mouse.</p>
-                
-                <p>En cada fotografía, el fondo puede ser alterado mediante el dibujo de los polígonos, pero los personajes que allí se encuentran permanecen inmutables e impenetrables, ya que los polígonos no los atraviesan.</p>
-                
-                <p>Además, la obra permite modificar el sonido al hacer clic sobre el lienzo. Mientras que al cargar la obra, se escucha una distorsión con algunas variaciones en el tiempo, al presionar el botón derecho del mouse, este sonido se apaga dando lugar a un piso de ruido de menor intensidad.</p>
+            
+            <!-- Columna derecha: Texto -->
+            <div class="text-section">
+                <div class="text-container">
+                    <div class="text-content" id="text-content">
+                        <p>"¿Ningún cuerpo es tierra firme?" presenta tres fotografías en blanco y negro, en las que una pareja es retratada en diversos paisajes.</p>
+                        
+                        <p>Al hacer clic, existe la posibilidad de dibujar polígonos yuxtapuestos, que varían en color tomando como referencia las tonalidades del sector de la fotografía de fondo sobre la que se posa el mouse. Estos polígonos también cambian su tamaño según la posición en el eje vertical del mouse. En cada fotografía, el fondo puede ser alterado mediante el dibujo de los polígonos, pero los personajes que allí se encuentran permanecen inmutables e impenetrables, ya que los polígonos no los atraviesan.</p>
+                        
+                        <p>Además, la obra permite modificar el sonido al hacer clic sobre el lienzo. Mientras que al cargar la obra, se escucha una distorsión con algunas variaciones en el tiempo, al presionar el botón derecho del mouse, este sonido se apaga dando lugar a un piso de ruido de menor intensidad.</p>
+                        
+                        <!-- Contenido expandido -->
+                        <div class="expanded-content" id="expanded-content">
+                            <h3>Desarrollo técnico, estético y conceptual</h3>
+                            
+                            <p>"¿Ningún cuerpo es tierra firme?" parte de la necesidad de hacer convivir recursos provenientes de lugares muy diferentes entre sí, para profundizar en un concepto que cuestiona la contraposición vida-muerte/presencia-ausencia. Para esto, se toma como punto de partida tres fotografías analógicas que han atravesado un proceso de digitalización, junto con dibujos poligonales generados mediante código, los cuales se activan al interactuar con la obra. Inke Arns, en <em>El código como acto de habla performativo</em>, afirma:</p>
+                            
+                            <blockquote>
+                                "El arte software no se refiere al software meramente como una herramienta pragmática e invisible que genera ciertos resultados visibles, sino que, por el contrario, se centra en el propio código del programa –incluso cuando este código no se deja explícitamente abierto o puesto en primer plano. Según Florian Cramer, el arte software destaca los subtextos estéticos y políticos de comandos técnicos aparentemente neutrales."
+                            </blockquote>
+                            
+                            <p>En la obra, el código se utiliza para hacer convivir estos recursos provenientes de mundos distintos, con la intención de desarrollar un concepto que, desde lo formal, plantea el cuestionamiento que surge al poder modificar el fondo, pero no la figura. En este sentido, Arns alude a la performatividad del código y sugiere que esta es "una de las razones del interés de los artistas contemporáneos por usar el software como material artístico". Mientras que quien interactúa con la obra puede dibujar, rellenar, pincelar e intervenir el fondo hasta lograr una abstracción de lo que antes ocurría en la fotografía, la figura de la pareja permanecerá completamente inmutable, ya que no es posible atravesar esos píxeles mediante ningún polígono. Entonces, ¿ningún cuerpo es tierra firme?</p>
+                            
+                            <p>Si bien esta frase, al carecer de signos de interrogación, invita a reflexionar sobre la transitoriedad humana, la presencia de dichos signos evoca una "ausencia" que trasciende las barreras de la finitud. En la obra, los cuerpos impenetrables permanecen allí, al mismo tiempo que el entorno puede sufrir cualquier tipo de alteración determinada por quien desea hacer clic sobre él. La sensación que deja un vínculo es algo capaz de perdurar más allá de la vida y la muerte. Tierra firme es lo corpóreo del abrazo; abrazo capaz de vencer los límites tangibles del cuerpo en sí mismo.</p>
+                            
+                            <p>El título proviene de un verso de "Umbrío", un poema del libro <em>Monólogo del necio</em> de Jorge Boccanera. Los signos de interrogación añadidos son el puntapié para desarrollar la obra. En otro verso, Boccanera plantea que la fotografía es tiempo retratado. Es justamente allí donde puede surgir la detención, evocada en forma de silencio: una pausa en el bullicio de la cotidianidad que aturde nuestros propios pasos, pasos que no dejan de generar próximos recuerdos. ¿Qué es lo que perdura cuando el ruido calla?</p>
+                            
+                            <div class="bibliography">
+                                <h4>Bibliografía</h4>
+                                <p>ARNS, Inke. (1978). "El código como acto de habla performativo" en <em>David R. Blumenthal: Understanding Jewish Mysticism.</em> Nueva York: Ktav Publishing, pp. 22-29.</p>
+                                <p>BOCCANERA, Jorge. (2015). "Umbrío" en <em>Monólogo del necio.</em> Ciudad Autónoma de Buenos Aires: Editora Patria Grande, pp. 52-54.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="expand-section">
+                        <button class="expand-btn" onclick="toggleExpand()" id="expand-btn">
+                            Expandir
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -163,104 +335,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
     
     <script>
-        // Toggle description
-        function toggleDescription() {
-            const description = document.getElementById('description');
-            const btn = document.querySelector('.toggle-btn');
+        // Toggle expand/contract
+        function toggleExpand() {
+            const expandedContent = document.getElementById('expanded-content');
+            const btn = document.getElementById('expand-btn');
             
-            if (description.classList.contains('expanded')) {
-                description.classList.remove('expanded');
-                btn.textContent = 'Ver descripción de la obra';
+            if (expandedContent.classList.contains('visible')) {
+                expandedContent.classList.remove('visible');
+                btn.textContent = 'Expandir';
             } else {
-                description.classList.add('expanded');
-                btn.textContent = 'Ocultar descripción';
+                expandedContent.classList.add('visible');
+                btn.textContent = 'Contraer';
             }
-        }
-        
-        // p5.js code
-        const fotos = []
-        const fotosT = []
-        let imagenActual = 0
-        const duracionPorImagen = 1500
-        let tiempoDeCambio = 0
-        let fondoDibujado = false
-        let sonRuido
-
-        function preload() {
-            fotos[0] = loadImage("foto/foto0.png")
-            fotosT[0] = loadImage("foto/foto0t.png")
-            fotos[1] = loadImage("foto/foto1.png")
-            fotosT[1] = loadImage("foto/foto1t.png")
-            fotos[2] = loadImage("foto/foto2.png")
-            fotosT[2] = loadImage("foto/foto2t.png")
-            sonRuido = loadSound("sonido/ruido.mp3")
-        }
-
-        function setup() {
-            const canvasSize = Math.min(400, window.innerWidth - 60)
-            const canvas = createCanvas(canvasSize, canvasSize)
-            canvas.parent("div-sketch")
-            tiempoDeCambio = frameCount + duracionPorImagen
-            if (sonRuido) sonRuido.setVolume(0.3)
-        }
-
-        function draw() {
-            if (frameCount >= tiempoDeCambio) {
-                imagenActual = (imagenActual + 1) % 3
-                tiempoDeCambio = frameCount + duracionPorImagen
-                background(0)
-                fondoDibujado = false
-            }
-
-            if (!fondoDibujado && fotos[imagenActual]) {
-                image(fotos[imagenActual], 0, 0, width, height)
-                fondoDibujado = true
-            }
-
-            if (mouseIsPressed && fotos[imagenActual]) {
-                fill(fotos[imagenActual].get(mouseX, mouseY))
-                stroke(200, 100)
-                strokeWeight(2)
-                poligonos(mouseX, mouseY, 25, mouseY / 10)
-
-                if (sonRuido && !sonRuido.isPlaying()) {
-                    sonRuido.loop()
-                }
-            } else {
-                if (sonRuido && sonRuido.isPlaying()) {
-                    sonRuido.pause()
-                }
-            }
-
-            if (fotosT[imagenActual]) {
-                image(fotosT[imagenActual], 0, 0, width, height)
-            }
-        }
-
-        function poligonos(x, y, d, amp) {
-            blendMode(OVERLAY)
-            beginShape()
-            vertex(x - d / 2 + random(-amp, amp), y - d / 2 + random(-amp, amp))
-            vertex(x + d / 2 + random(-amp, amp), y - d / 2 + random(-amp, amp))
-            vertex(x + d / 2 + random(-amp, amp), y + d / 2 + random(-amp, amp))
-            vertex(x - d / 2 + random(-amp, amp), y + d / 2 + random(-amp, amp))
-            endShape(CLOSE)
-            blendMode(BLEND)
-        }
-
-        function mousePressed() {
-            if (window.AudioContext) {
-                const audioContext = new window.AudioContext()
-                if (audioContext.state !== "running") {
-                    audioContext.resume()
-                }
-            }
-        }
-
-        function windowResized() {
-            const canvasSize = Math.min(400, window.innerWidth - 60)
-            resizeCanvas(canvasSize, canvasSize)
         }
     </script>
+    
+    <script src="sketch.js"></script>
 </body>
 </html>
