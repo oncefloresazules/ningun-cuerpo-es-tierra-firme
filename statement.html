@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statement - ¿Ningún cuerpo es tierra firme?</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Variables CSS - iguales a tu portfolio */
+        :root {
+            --primary-bg: #022741;
+            --secondary-bg: #0a1929;
+            --accent-color: #b14abf;
+            --accent-secondary: #41bf9a;
+            --accent-tertiary: #f2e63c;
+            --text-primary: #abb2bf;
+            --text-secondary: #8892a6;
+            --text-muted: #5c6370;
+            --border-color: #1e2a3a;
+            --font-mono: "JetBrains Mono", monospace;
+            --font-sans: "Inter", sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 20px 40px rgba(0, 39, 65, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fondo igual a tu portfolio */
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(171, 178, 191, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(171, 178, 191, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.02;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-title {
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .project-meta {
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            background: rgba(10, 25, 41, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            line-height: 1.7;
+        }
+
+        .content h2 {
+            font-family: var(--font-mono);
+            color: var(--accent-color);
+            font-size: 20px;
+            margin-bottom: 25px;
+            margin-top: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .content h2:first-child {
+            margin-top: 0;
+        }
+
+        .content h3 {
+            font-family: var(--font-mono);
+            color: var(--accent-secondary);
+            font-size: 16px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            letter-spacing: 1px;
+        }
+
+        .content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        .content blockquote {
+            background: rgba(177, 74, 191, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .content blockquote p {
+            color: var(--text-primary);
+            margin-bottom: 0;
+        }
+
+        .bibliography {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .bibliography h3 {
+            color: var(--accent-tertiary);
+            margin-bottom: 20px;
+        }
+
+        .bibliography p {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            padding-left: 20px;
+            text-indent: -20px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: transparent;
+            border: 1px solid var(--accent-secondary);
+            color: var(--accent-secondary);
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            background: var(--accent-secondary);
+            color: var(--primary-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 40px 20px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .content p {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondo igual a tu portfolio -->
+    <div class="hero-bg">
+        <div class="grid-overlay"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="main-container">
+        <a href="index.html" class="back-link">
+            <span>←</span>
+            <span>Volver a la obra</span>
+        </a>
+
+        <div class="header">
+            <h1 class="project-title">¿Ningún cuerpo es tierra firme?</h1>
+            <div class="project-meta">Florencia Pennella • AM1 - TN - 2024</div>
+        </div>
+
+        <div class="content">
+            <p>"¿Ningún cuerpo es tierra firme?" presenta tres fotografías en blanco y negro, en las que una pareja es retratada en diversos paisajes.</p>
+
+            <p>Al hacer clic, existe la posibilidad de dibujar polígonos yuxtapuestos, que varían en color tomando como referencia las tonalidades del sector de la fotografía de fondo sobre la que se posa el mouse. Estos polígonos también cambian su tamaño según la posición en el eje vertical del mouse. En cada fotografía, el fondo puede ser alterado mediante el dibujo de los polígonos, pero los personajes que allí se encuentran permanecen inmutables e impenetrables, ya que los polígonos no los atraviesan.</p>
+
+            <p>Además, la obra permite modificar el sonido al hacer clic sobre el lienzo. Mientras que al cargar la obra, se escucha una distorsión con algunas variaciones en el tiempo, al presionar el botón derecho del mouse, este sonido se apaga dando lugar a un piso de ruido de menor intensidad.</p>
+
+            <h2>Desarrollo técnico, estético y conceptual</h2>
+
+            <p>"¿Ningún cuerpo es tierra firme?" parte de la necesidad de hacer convivir recursos provenientes de lugares muy diferentes entre sí, para profundizar en un concepto que cuestiona la contraposición vida-muerte/presencia-ausencia. Para esto, se toma como punto de partida tres fotografías analógicas que han atravesado un proceso de digitalización, junto con dibujos poligonales generados mediante código, los cuales se activan al interactuar con la obra. Inke Arns, en <em>El código como acto de habla performativo</em>, afirma:</p>
+
+            <blockquote>
+                <p>"El arte software no se refiere al software meramente como una herramienta pragmática e invisible que genera ciertos resultados visibles, sino que, por el contrario, se centra en el propio código del programa –incluso cuando este código no se deja explícitamente abierto o puesto en primer plano. Según Florian Cramer, el arte software destaca los subtextos estéticos y políticos de comandos técnicos aparentemente neutrales."</p>
+            </blockquote>
+
+            <p>En la obra, el código se utiliza para hacer convivir estos recursos provenientes de mundos distintos, con la intención de desarrollar un concepto que, desde lo formal, plantea el cuestionamiento que surge al poder modificar el fondo, pero no la figura. En este sentido, Arns alude a la performatividad del código y sugiere que esta es "una de las razones del interés de los artistas contemporáneos por usar el software como material artístico". Mientras que quien interactúa con la obra puede dibujar, rellenar, pincelar e intervenir el fondo hasta lograr una abstracción de lo que antes ocurría en la fotografía, la figura de la pareja permanecerá completamente inmutable, ya que no es posible atravesar esos píxeles mediante ningún polígono. Entonces, ¿ningún cuerpo es tierra firme?</p>
+
+            <p>Si bien esta frase, al carecer de signos de interrogación, invita a reflexionar sobre la transitoriedad humana, la presencia de dichos signos evoca una "ausencia" que trasciende las barreras de la finitud. En la obra, los cuerpos impenetrables permanecen allí, al mismo tiempo que el entorno puede sufrir cualquier tipo de alteración determinada por quien desea hacer clic sobre él. La sensación que deja un vínculo es algo capaz de perdurar más allá de la vida y la muerte. Tierra firme es lo corpóreo del abrazo; abrazo capaz de vencer los límites tangibles del cuerpo en sí mismo.</p>
+
+            <p>El título proviene de un verso de "Umbrío", un poema del libro <em>Monólogo del necio</em> de Jorge Boccanera. Los signos de interrogación añadidos son el puntapié para desarrollar la obra. En otro verso, Boccanera plantea que la fotografía es tiempo retratado. Es justamente allí donde puede surgir la detención, evocada en forma de silencio: una pausa en el bullicio de la cotidianidad que aturde nuestros propios pasos, pasos que no dejan de generar próximos recuerdos. ¿Qué es lo que perdura cuando el ruido calla?</p>
+
+            <div class="bibliography">
+                <h3>Bibliografía</h3>
+                <p>ARNS, Inke. (1978). "El código como acto de habla performativo" en <em>David R. Blumenthal: Understanding Jewish Mysticism.</em> Nueva York: Ktav Publishing, pp. 22-29.</p>
+                <p>BOCCANERA, Jorge. (2015). "Umbrío" en <em>Monólogo del necio.</em> Ciudad Autónoma de Buenos Aires: Editora Patria Grande, pp. 52-54.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="index.html" class="footer-link">
+                <span>Ver la obra interactiva</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
