@@ -3,310 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Ningún cuerpo es tierra firme? - Florencia Pennella</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Test - ¿Ningún cuerpo es tierra firme?</title>
     <style>
-        /* Variables CSS - iguales a tu portfolio */
-        :root {
-            --primary-bg: #022741;
-            --secondary-bg: #0a1929;
-            --accent-color: #b14abf;
-            --accent-secondary: #41bf9a;
-            --accent-tertiary: #f2e63c;
-            --text-primary: #abb2bf;
-            --text-secondary: #8892a6;
-            --text-muted: #5c6370;
-            --border-color: #1e2a3a;
-            --font-mono: "JetBrains Mono", monospace;
-            --font-sans: "Inter", sans-serif;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow: 0 20px 40px rgba(0, 39, 65, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: var(--font-sans);
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Fondo igual a tu portfolio */
-        .hero-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .grid-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(171, 178, 191, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(171, 178, 191, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        .noise-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.02;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
-        }
-
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            max-width: 800px;
-        }
-
-        .project-title {
-            font-family: var(--font-mono);
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 20px;
-            line-height: 1.2;
-            letter-spacing: 1px;
-        }
-
-        .project-meta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .meta-tag {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .meta-artist {
-            background: var(--accent-color);
-            color: var(--primary-bg);
-        }
-
-        .meta-tech {
-            background: var(--accent-secondary);
-            color: var(--primary-bg);
-        }
-
-        .meta-year {
-            background: var(--accent-tertiary);
-            color: var(--primary-bg);
-        }
-
-        .artwork-container {
-            margin: 20px 0;
-        }
-
-        #div-sketch {
-            background: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            margin: 0;
             padding: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .instructions {
+            background: #022741;
+            color: #abb2bf;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            margin: 20px 0;
-            padding: 15px 25px;
-            background: rgba(177, 74, 191, 0.1);
-            border: 1px solid var(--border-color);
-            border-radius: 25px;
-            color: var(--accent-color);
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-style: italic;
-            max-width: 500px;
-            backdrop-filter: blur(10px);
         }
-
-        .description {
-            margin-top: 50px;
-            max-width: 700px;
-            background: rgba(10, 25, 41, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .description h3 {
-            font-family: var(--font-mono);
-            color: var(--accent-color);
+        
+        h1 {
+            color: #b14abf;
             margin-bottom: 20px;
-            font-size: 18px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
         }
-
-        .description p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .links {
-            margin-top: 40px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: transparent;
-            border: 1px solid var(--accent-secondary);
-            color: var(--accent-secondary);
-            text-decoration: none;
-            border-radius: 25px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-
-        .link:hover {
-            background: var(--accent-secondary);
-            color: var(--primary-bg);
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            margin-top: 60px;
-            text-align: center;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 12px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 30px;
+        
+        .test-info {
+            background: #0a1929;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
             max-width: 600px;
+            border: 2px solid #1e2a3a;
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 20px 15px;
-            }
-
-            .project-meta {
-                gap: 10px;
-            }
-
-            .meta-tag {
-                font-size: 10px;
-                padding: 4px 8px;
-            }
-
-            #div-sketch {
-                padding: 15px;
-            }
-
-            .description {
-                padding: 20px;
-            }
-
-            .links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .link {
-                width: 200px;
-                justify-content: center;
-            }
+        
+        .file-test {
+            margin: 10px 0;
+            padding: 10px;
+            background: #1e2a3a;
+            border-radius: 4px;
+        }
+        
+        .success { color: #41bf9a; }
+        .error { color: #ff5f57; }
+        
+        #canvas-container {
+            margin: 20px auto;
+            border: 2px solid #1e2a3a;
+            border-radius: 8px;
+            padding: 20px;
+            background: #0a1929;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <!-- Fondo igual a tu portfolio -->
-    <div class="hero-bg">
-        <div class="grid-overlay"></div>
-        <div class="noise-overlay"></div>
+    <h1>🔍 Test de Diagnóstico</h1>
+    
+    <div class="test-info">
+        <h3>Estado de la carga:</h3>
+        <div id="status">Iniciando pruebas...</div>
+    </div>
+    
+    <div id="canvas-container">
+        <div id="div-sketch"></div>
     </div>
 
-    <div class="main-container">
-        <div class="header">
-            <h1 class="project-title">¿Ningún cuerpo es tierra firme?</h1>
-            
-            <div class="project-meta">
-                <span class="meta-tag meta-artist">Florencia Pennella</span>
-                <span class="meta-tag meta-tech">p5.js • Fotografía analógica</span>
-                <span class="meta-tag meta-year">2024</span>
-            </div>
-        </div>
-
-        <div class="artwork-container">
-            <div id="div-sketch"></div>
-        </div>
-
-        <div class="instructions">
-            Haz clic y arrastra para dibujar polígonos sobre la imagen
-        </div>
-
-        <div class="description">
-            <h3>Sobre la obra</h3>
-            <p>"¿Ningún cuerpo es tierra firme?" presenta tres fotografías en blanco y negro, en las que una pareja es retratada en diversos paisajes.</p>
-            
-            <p>Al hacer clic, existe la posibilidad de dibujar polígonos yuxtapuestos, que varían en color tomando como referencia las tonalidades del sector de la fotografía de fondo sobre la que se posa el mouse. Estos polígonos también cambian su tamaño según la posición en el eje vertical del mouse. En cada fotografía, el fondo puede ser alterado mediante el dibujo de los polígonos, pero los personajes que allí se encuentran permanecen inmutables e impenetrables, ya que los polígonos no los atraviesan.</p>
-            
-            <p>Además, la obra permite modificar el sonido al hacer clic sobre el lienzo. Mientras que al cargar la obra, se escucha una distorsión con algunas variaciones en el tiempo, al presionar el botón derecho del mouse, este sonido se apaga dando lugar a un piso de ruido de menor intensidad.</p>
-        </div>
-
-        <div class="links">
-            <a href="statement.html" class="link" target="_blank">
-                
-                <span>Desarrollo conceptual</span>
-            </a>
-        </div>
-
-        <div class="footer">
-            <p>&copy; 2024 Florencia Pennella</p>
-        </div>
-    </div>
-
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
-    <script src="sketch.js"></script>
+    
+    <script>
+        let statusDiv;
+        let testImages = [];
+        let loadedCount = 0;
+        let totalFiles = 6; // 6 imágenes
+        
+        function preload() {
+            statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = '⏳ Cargando archivos...';
+            
+            // Intentar cargar las imágenes
+            try {
+                testImages[0] = loadImage("foto/foto0.png", 
+                    () => fileLoaded("foto0.png"), 
+                    () => fileError("foto0.png"));
+                testImages[1] = loadImage("foto/foto0t.png", 
+                    () => fileLoaded("foto0t.png"), 
+                    () => fileError("foto0t.png"));
+                testImages[2] = loadImage("foto/foto1.png", 
+                    () => fileLoaded("foto1.png"), 
+                    () => fileError("foto1.png"));
+                testImages[3] = loadImage("foto/foto1t.png", 
+                    () => fileLoaded("foto1t.png"), 
+                    () => fileError("foto1t.png"));
+                testImages[4] = loadImage("foto/foto2.png", 
+                    () => fileLoaded("foto2.png"), 
+                    () => fileError("foto2.png"));
+                testImages[5] = loadImage("foto/foto2t.png", 
+                    () => fileLoaded("foto2t.png"), 
+                    () => fileError("foto2t.png"));
+            } catch(error) {
+                statusDiv.innerHTML = `❌ Error en preload: ${error.message}`;
+            }
+        }
+        
+        function fileLoaded(filename) {
+            loadedCount++;
+            console.log(`✅ Cargado: ${filename}`);
+            updateStatus();
+        }
+        
+        function fileError(filename) {
+            console.log(`❌ Error cargando: ${filename}`);
+            statusDiv.innerHTML += `<div class="file-test error">❌ No se pudo cargar: ${filename}</div>`;
+        }
+        
+        function updateStatus() {
+            statusDiv.innerHTML = `⏳ Archivos cargados: ${loadedCount}/${totalFiles}`;
+            
+            if (loadedCount === totalFiles) {
+                statusDiv.innerHTML = `<div class="success">✅ ¡Todos los archivos cargados correctamente!</div>`;
+            }
+        }
+        
+        function setup() {
+            let canvas = createCanvas(400, 400);
+            canvas.parent('div-sketch');
+            background(50);
+            
+            fill(255);
+            textAlign(CENTER, CENTER);
+            textSize(16);
+            text('Canvas de p5.js funcionando', width/2, height/2 - 20);
+            text(`Archivos cargados: ${loadedCount}/${totalFiles}`, width/2, height/2 + 20);
+            
+            // Si hay imágenes cargadas, mostrar la primera
+            if (testImages[0]) {
+                image(testImages[0], 0, 0, width, height);
+            }
+        }
+        
+        function draw() {
+            // Mostrar información en tiempo real
+            fill(255, 255, 255, 200);
+            rect(10, height - 60, width - 20, 50);
+            fill(0);
+            textAlign(LEFT, TOP);
+            textSize(12);
+            text(`Frame: ${frameCount}`, 20, height - 50);
+            text(`Mouse: ${mouseX}, ${mouseY}`, 20, height - 35);
+            text(`Archivos: ${loadedCount}/${totalFiles}`, 20, height - 20);
+        }
+    </script>
 </body>
 </html>
